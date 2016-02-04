@@ -60,4 +60,4 @@ class UCBBandit{
     })
   }
 }
-exports.ucb = UCBBandit
+exports.UCBBandit = UCBBandit
