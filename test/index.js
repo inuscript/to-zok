@@ -24,4 +24,21 @@ describe("UCBBandit", () => {
     let result = bandit.select()
     assert.deepEqual(["a", "b"], result)
   })
+  it("no select", () => {
+    let arms = ["a", "b"]
+    let bandit = new UCBBandit(arms)
+    bandit.reward("a", 0.5)
+    bandit.reward("a", 0.3)
+    let result = bandit.select()
+    assert.deepEqual(["b", "a"], result)
+  })
+  it("ignore unknown reward", () => {
+    let arms = ["a", "b"]
+    let bandit = new UCBBandit(arms)
+    bandit.reward("a", 0.5)
+    bandit.reward("b", 0.5)
+    bandit.reward("xxx", 0.3)
+    let result = bandit.select()
+    assert.deepEqual(["a", "b"], result)
+  })
 })
