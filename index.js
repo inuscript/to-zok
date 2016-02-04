@@ -45,19 +45,20 @@ class UCBBandit{
     arm.reward(reward)    
   }
   calcValues(){
-    return this.arms.map( (arm) => arm.calcUCB(this.n) )
+    return this.arms.map( (arm) => {
+      return {
+        label: arm.label,
+        ucb: arm.calcUCB(this.n) 
+      }
+    })
   }
   calc(){
     let valuesUCB = this.calcValues()
-    let sorted = valuesUCB.concat().sort().reverse()
-
-    let keys = sorted.map( (val) => {
-      let idx = valuesUCB.indexOf(val)
-      return idx
-    })
-    console.log(keys)
-    return keys.map( (k) => {
-      return this.arms[k].label
+    return valuesUCB.concat().sort((a, b) => a.ucb < b.ucb)
+  }
+  select(){
+    return this.calc().map( (v) => {
+      return v.label
     })
   }
 }
