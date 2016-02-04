@@ -48,7 +48,7 @@ class UCBBandit{
     return this.arms.map( (arm) => arm.calcUCB(this.n) )
   }
   calc(){
-    let valuesUCB = calcValues()
+    let valuesUCB = this.calcValues()
     let sorted = valuesUCB.concat().sort().reverse()
 
     let keys = sorted.map( (val) => {
