@@ -55,6 +55,7 @@ class UCBBandit{
       let idx = valuesUCB.indexOf(val)
       return idx
     })
+    console.log(keys)
     return keys.map( (k) => {
       return this.arms[k].label
     })
