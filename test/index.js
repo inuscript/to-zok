@@ -1,5 +1,5 @@
 "use strict"
-const UCBBandit = require("../index")
+const UCBBandit = require("../index").ucb
 const assert = require("assert")
 describe("UCBBandit", () => {
   it("default usage", () => {
@@ -11,6 +11,6 @@ describe("UCBBandit", () => {
     bandit.reward("c", 0.5)
     let result = bandit.calcValues()
     let expect = [ 1.8651092223153953, 1.5774100225154748, 2.1651092223153956 ]
-    assert.deppEqual(result, expect)
+    assert.deepEqual(result, expect)
   })
 })
