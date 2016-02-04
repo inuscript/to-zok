@@ -1,4 +1,6 @@
-# UCB Bandit tool
+# To-zok
+UCB Bandit tool
+
 
 ```js
 const UCBBandit = require("@inuscript/to-zok").ucb
