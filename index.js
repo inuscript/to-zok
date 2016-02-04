@@ -1,8 +1,7 @@
-import random from "lodash.random"
-
+"use strict"
 class Arm{
-  constructor({label}){
-    this.label = label
+  constructor( obj ){
+    this.label = obj.label
     this.rewards = []
   }
   reward(r){
@@ -25,12 +24,15 @@ class Arm{
   }
 }
 
-export default class UCBBandit{
-  constructor({arms}){
+class UCBBandit{
+  constructor( arms ){
     // this.arms = arms.length
     this.arms = arms.map( (label) => {
       return new Arm({label})
     })
+  }
+  get n(){
+    return this.arms.reduce( (sum, arm) =>  sum + arm.count, 0)
   }
   searchArm(label){
     return this.arms.find( (arm) => arm.label === label)
@@ -42,11 +44,11 @@ export default class UCBBandit{
     }
     arm.reward(reward)    
   }
-  get n(){
-    return this.arms.reduce( (sum, arm) =>  sum + arm.count, 0)
+  calcValues(){
+    return this.arms.map( (arm) => arm.calcUCB(this.n) )
   }
   calc(){
-    let valuesUCB = this.arms.map( (arm) => arm.calcUCB(this.n) )
+    let valuesUCB = calcValues()
     let sorted = valuesUCB.concat().sort().reverse()
 
     let keys = sorted.map( (val) => {
@@ -58,3 +60,4 @@ export default class UCBBandit{
     })
   }
 }
+module.exports = UCBBandit

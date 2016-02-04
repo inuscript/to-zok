@@ -1,12 +1,15 @@
 {
-  "name": "@inuscript/to-zok",
+  "name": "@inuscript/tozok",
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
 }
