@@ -47,7 +47,7 @@ class UCBBandit{
   calcValues(){
     return this.arms.map( (arm) => {
       return {
-        label: arm.label,
+        arm: arm,
         ucb: arm.calcUCB(this.n) 
       }
     })
@@ -58,7 +58,19 @@ class UCBBandit{
   }
   select(){
     return this.calc().map( (v) => {
-      return v.label
+      return v.arm.label
+    })
+  }
+  serialize(){
+    return this.calc().map( (val) => {
+      let arm = val.arm
+      let ucb = val.ucb
+      return {
+        name: arm.label,
+        count: arm.count,
+        expectation: arm.expectation,
+        ucb: ucb
+      }
     })
   }
 }

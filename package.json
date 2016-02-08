@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "ava": "^0.11.0",
     "mocha": "^2.4.5"
   }
 }
