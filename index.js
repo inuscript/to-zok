@@ -66,7 +66,7 @@ class UCBBandit{
       let arm = val.arm
       let ucb = val.ucb
       return {
-        name: arm.label,
+        label: arm.label,
         count: arm.count,
         expectation: arm.expectation,
         ucb: ucb
